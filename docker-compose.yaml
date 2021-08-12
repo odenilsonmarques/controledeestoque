@@ -1,0 +1,28 @@
+version: "3"
+services: 
+    php:
+        build: .
+        restart: always
+        container_name: controledeestoque
+        ports: 
+            - "8080:80"
+        volumes: 
+            - ./www:/var/www/html
+        networks: 
+            - default
+    db:
+        image: mysql:5.7
+        restart: always
+        ports: 
+            - "3306:3306"
+        environment: 
+            MYSQL_DATABASE: dbcontroledeestoque
+            MYSQL_USER: odenilson
+            MYSQL_PASSWORD: o1w2o3o4p5pw
+            MYSQL_ROOT_PASSWORD: o1w2o3o4p5rt
+        volumes: 
+            - db_data:/var/lib/MYSQL_DATABASE
+        networks: 
+            - default
+volumes: 
+    db_data:
